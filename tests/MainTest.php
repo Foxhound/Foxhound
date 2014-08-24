@@ -7,6 +7,7 @@ class MainTest extends PHPUnit_Framework_TestCase
     {
         $core = new Foxhound\Core\Core();
         $this->assertNotEmpty($core->loader);
+        $this->assertNotEmpty($core->parser);
     }
 
 }
