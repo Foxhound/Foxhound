@@ -13,17 +13,34 @@
  */
 class MainTest extends PHPUnit_Framework_TestCase
 {
-    public function testDoesAutoloadDependencies()
+    public function __construct()
     {
-        $core = new Foxhound\Core\Core();
-        $this->assertInstanceOf('\Composer\Autoload\ClassLoader', $core->loader);
+        $this->core = new \Foxhound\Core\Core();
     }
 
-    public function testDoesCreateServicesUsingIOC()
+    public function testDoesAutoloadDependencies()
     {
-        $core = new Foxhound\Core\Core();
-        $this->assertInstanceOf('\PhpParser\Parser', $core->container->get('parser'));
-        $this->assertInstanceOf('\PhpParser\NodeTraverser', $core->container->get('traverser'));
-        $this->assertInstanceOf('\Foxhound\Core\File', $core->container->get('file'));
+        $this->assertInstanceOf(
+            '\Composer\Autoload\ClassLoader',
+            $this->core->loader
+        );
+    }
+
+    /**
+     * @depends testDoesAutoloadDependencies
+     */
+    public function testDoesServeDependenciesUsingIOC()
+    {
+        $this->assertInstanceOf(
+            '\PhpParser\Parser',
+            $this->core->container->get('parser')
+        );
+        $this->assertInstanceOf(
+            '\PhpParser\NodeTraverser',
+            $this->core->container->get('traverser'));
+        $this->assertInstanceOf(
+            '\Foxhound\Core\File',
+            $this->core->container->get('file')
+        );
     }
 }
