@@ -37,7 +37,8 @@ class MainTest extends PHPUnit_Framework_TestCase
         );
         $this->assertInstanceOf(
             '\PhpParser\NodeTraverser',
-            $this->core->container->get('traverser'));
+            $this->core->container->get('traverser')
+        );
         $this->assertInstanceOf(
             '\Foxhound\Core\File',
             $this->core->container->get('file')

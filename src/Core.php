@@ -57,7 +57,7 @@ class Core
             ->register('lexer', '\PhpParser\Lexer');
         $this->container
             ->register('parser', '\PhpParser\Parser')
-            ->addArgument(new Lexer());
+            ->addArgument(new Reference('lexer'));
         $this->container
             ->register('file', '\Foxhound\Core\File')
             ->setArguments(
