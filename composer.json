@@ -3,6 +3,7 @@
     "description": "Security-focused Static Code Analyser and IPS for PHP",
     "license": "MIT",
     "require": {
+        "php": ">=5.3.2",
         "symfony/dependency-injection": "2.5.*",
         "nikic/php-parser": "1.0.0-beta1",
         "monolog/monolog": "1.10.*"
