@@ -3,7 +3,7 @@
          verbose="true"
          colors="true">
     <testsuites>
-        <testsuite name="Foxhound Core">
+        <testsuite name="Foxhound">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
