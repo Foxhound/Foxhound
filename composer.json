@@ -15,7 +15,7 @@
     "autoload": {
         "psr-4": {
             "Foxhound\\Core\\": "src/",
-            "Foxhound\\Core\\Commands": "src/commands"
+            "Foxhound\\Core\\Command\\": "src/commands"
         }
     },
     "bin": ["bin/foxhound"]
