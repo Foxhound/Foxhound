@@ -16,12 +16,14 @@ namespace Foxhound\Core;
 use PhpParser\Error;
 use PhpParser\NodeTraverser;
 use PhpParser\Parser;
+use Psr\Log\LoggerInterface;
 use RecursiveDirectoryIterator;
 
 class File
 {
-    public function __construct(Parser $parser, NodeTraverser $traverser)
+    public function __construct(LoggerInterface $logger, Parser $parser, NodeTraverser $traverser)
     {
+        $this->logger = $logger;
         $this->parser = $parser;
         $this->traverser = $traverser;
     }
@@ -36,18 +38,19 @@ class File
 
         foreach ($files as $file) {
             try {
-                echo $file . PHP_EOL;
-
                 // load
+                $this->logger->info("Opening file", ["$file"]);
                 $code = file_get_contents($file);
 
                 // parse
+                $this->logger->info("Parsing file", ["$file"]);
                 $stmts = $this->parser->parse($code);
 
                 // traverse
+                $this->logger->info("Traversing file", ["$file"]);
                 $this->traverser->traverse($stmts);
             } catch (Error $e) {
-                echo 'Parse Error: ', $e->getMessage();
+                $this->logger->error('Parse Error', [$e->getMessage()]);
             }
         }
     }

@@ -65,12 +65,18 @@ class Core
             ->register('file', '\Foxhound\Core\File')
             ->setArguments(
                 [
+                    new Reference('logger'),
                     new Reference('parser'),
                     new Reference('traverser')
                 ]
             );
 
+        $logger = $this->container->get('logger');
+        $logger->info("Logger initialised");
+
         $file = $this->container->get('file');
+        $logger->info("File class initialised");
         $file->load();
+
     }
 }
