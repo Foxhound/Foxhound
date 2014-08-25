@@ -9,6 +9,6 @@
         "phpunit/phpunit": "4.2.*"
     },
     "autoload": {
-        "psr-4": {"Foxhound\\Core\\": "Source/"}
+        "psr-4": {"Foxhound\\Core\\": "src/"}
     }
 }
