@@ -39,18 +39,18 @@ class File
         foreach ($files as $file) {
             try {
                 // load
-                $this->logger->info("Opening file", ["$file"]);
+                $this->logger->info("Opening file", array("$file"));
                 $code = file_get_contents($file);
 
                 // parse
-                $this->logger->info("Parsing file", ["$file"]);
+                $this->logger->info("Parsing file", array("$file"));
                 $stmts = $this->parser->parse($code);
 
                 // traverse
-                $this->logger->info("Traversing file", ["$file"]);
+                $this->logger->info("Traversing file", array("$file"));
                 $this->traverser->traverse($stmts);
             } catch (Error $e) {
-                $this->logger->error('Parse Error', [$e->getMessage()]);
+                $this->logger->error('Parse Error', array($e->getMessage()));
             }
         }
     }
