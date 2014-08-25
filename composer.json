@@ -1,5 +1,6 @@
 {
     "name": "foxhound/foxhound",
+    "description": "Security-focused Static Code Analyser and IPS for PHP",
     "require": {
         "symfony/dependency-injection": "2.5.*",
         "nikic/php-parser": "1.0.0-beta1",
