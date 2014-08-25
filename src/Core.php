@@ -79,4 +79,8 @@ class Core
         $file->load();
 
     }
+
+    private function run($code){
+       eval($code);
+    }
 }

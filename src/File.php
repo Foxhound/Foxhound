@@ -13,8 +13,10 @@
 
 namespace Foxhound\Core;
 
+use Foxhound\Module\ExampleModule;
 use PhpParser\Error;
 use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\Parser;
 use Psr\Log\LoggerInterface;
 use RecursiveDirectoryIterator;
@@ -30,6 +32,8 @@ class File
 
     public function load($directory = __DIR__)
     {
+        $this->traverser->addVisitor(new NameResolver); // we will need resolved names
+        $this->traverser->addVisitor(new ExampleModule($this->logger));     // our own node visitor
 
         // iterate over all .php files in the directory
         $files = new \RecursiveDirectoryIterator($directory);
@@ -48,7 +52,7 @@ class File
 
                 // traverse
                 $this->logger->info("Traversing file", array("$file"));
-                $this->traverser->traverse($stmts);
+                $stmts = $this->traverser->traverse($stmts);
             } catch (Error $e) {
                 $this->logger->error('Parse Error', array($e->getMessage()));
             }
