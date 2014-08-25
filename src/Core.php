@@ -52,6 +52,9 @@ class Core
         $this->container = new ContainerBuilder;
 
         $this->container
+            ->register('logger', '\Monolog\Logger')
+            ->addArgument('foxhound');
+        $this->container
             ->register('traverser', '\PhpParser\NodeTraverser');
         $this->container
             ->register('lexer', '\PhpParser\Lexer');

@@ -43,5 +43,9 @@ class MainTest extends PHPUnit_Framework_TestCase
             '\Foxhound\Core\File',
             $this->core->container->get('file')
         );
+        $this->assertInstanceOf(
+            '\Psr\Log\LoggerInterface',
+            $this->core->container->get('logger')
+        );
     }
 }
