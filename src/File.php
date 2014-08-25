@@ -43,11 +43,11 @@ class File
                 $code = file_get_contents($file);
 
                 // parse
-                $this->logger->info("Parsing file", array("$file"));
+                $this->logger->info("Parsing file", array("$file", $code));
                 $stmts = $this->parser->parse($code);
 
                 // traverse
-                $this->logger->info("Traversing file", array("$file"));
+                $this->logger->info("Traversing file", array("$file", $stmts));
                 $this->traverser->traverse($stmts);
             } catch (Error $e) {
                 $this->logger->error('Parse Error', array($e->getMessage()));
