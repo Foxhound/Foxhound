@@ -1,3 +1,3 @@
 <?php
 
-require __DIR__ . '/../src/Core.php';
+require __DIR__ . '/../Source/Core.php';
