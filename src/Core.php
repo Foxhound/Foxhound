@@ -64,11 +64,11 @@ class Core
         $this->container
             ->register('file', '\Foxhound\Core\File')
             ->setArguments(
-                [
+                array(
                     new Reference('logger'),
                     new Reference('parser'),
                     new Reference('traverser')
-                ]
+                )
             );
 
         $logger = $this->container->get('logger');
